@@ -1,2 +1,2 @@
-repo: https://github.com/juju-solutions/layer-basic.git
+repo: https://github.com/hpcc-charms/layer-hpccsystems-platform-base.git
 includes: ['layer:basic']
