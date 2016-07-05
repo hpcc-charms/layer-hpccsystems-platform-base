@@ -167,8 +167,8 @@ class HPCCSystemsPlatformConfigs:
         try: 
             output = check_output([HPCCEnv.HPCC_HOME+'/etc/init.d/hpcc-init', 'start'])
             log(output, INFO)
-        except CalledProcessError:
-            log(output, ERROR)
+        except CalledProcessError as e:
+            log(e.output, ERROR)
             return 1
 
     def stop(self):
@@ -177,8 +177,8 @@ class HPCCSystemsPlatformConfigs:
         try: 
             output = check_output([HPCCEnv.HPCC_HOME+'/etc/init.d/hpcc-init', 'stop'])
             log(output, INFO)
-        except CalledProcessError:
-            log(output, ERROR)
+        except CalledProcessError as e:
+            log(e.output, ERROR)
             return 1
 
     def restart(self):
@@ -187,9 +187,18 @@ class HPCCSystemsPlatformConfigs:
         try: 
             output = check_output([HPCCEnv.HPCC_HOME+'/etc/init.d/hpcc-init', 'restart'])
             log(output, INFO)
-        except CalledProcessError:
-            log(output, ERROR)
+        except CalledProcessError as e:
+            log(e.output, ERROR)
             return 1
+
+    def is_running(self):
+        try: 
+            output = check_output([HPCCEnv.HPCC_HOME+'/etc/init.d/hpcc-init', 'restart'])
+            log(output, INFO)
+            return true
+        except CalledProcessError as e:
+            log(e.output, INFO)
+            return false
 
     def generate_env_xml(self, nodeTypes):
         self.process_nodes(nodeTypes)
@@ -201,8 +210,8 @@ class HPCCSystemsPlatformConfigs:
         try:
             output =  check_call(cmd.split(), shell=False)
             log(output, INFO)
-        except CalledProcessError:
-            log(output, ERROR)
+        except CalledProcessError as e:
+            log(e.output, ERROR)
             return 1
   
     def create_envgen_yaml(self):
