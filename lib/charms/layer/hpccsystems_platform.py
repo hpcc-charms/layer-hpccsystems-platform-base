@@ -23,6 +23,8 @@ from charmhelpers.core.hookenv import DEBUG
 #from charmhelpers.core import templating
 
 import charms.layer.utils
+import charms.layer.hpccenv
+from charms.layer.hpccenv import HPCCEnv
 
 
 from charmhelpers.fetch.archiveurl import (
@@ -31,37 +33,6 @@ from charmhelpers.fetch.archiveurl import (
 
 #import charm.apt
    
-class HPCCEnv:
-   JUJU_HPCC_DIR    = '/var/lib/HPCCSystems/charm'
-   CONFIG_DIR       = '/etc/HPCCSystems'
-   ENV_XML_FILE     = 'environment.xml'
-   ENV_CONF_FILE    = 'environment.conf'
-   ENV_RULES_FILE   = 'genenvrules.conf'
-   HPCC_HOME        = '/opt/HPCCSystems'
-   HPCC_CLUSTER_DIR = JUJU_HPCC_DIR + '/cluster'
-   CLUSTER_IPS_DIR  = HPCC_CLUSTER_DIR +  '/ips'
-   CLUSTER_NODE_TYPES = ['dali',
-                         'sasha', 
-                         'dfuserver',
-                         'eclagent',
-                         'eclccserver',
-                         'eclscheduler',
-                         'esp',
-                         'roxie',
-                         'thormaster',
-                         'thorslave',
-                         'support']
-   PLATFORM_COMPONENTS = ['dali',
-                         'sasha', 
-                         'dfuserver',
-                         'eclagent',
-                         'eclccserver',
-                         'eclscheduler',
-                         'esp',
-                         'roxie',
-                         'thor',
-                         'dafilesrv']
- 
      
 
 class HPCCSystemsPlatformConfigs:

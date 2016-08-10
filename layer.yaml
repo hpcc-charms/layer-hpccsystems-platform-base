@@ -1,2 +1,3 @@
 repo: https://github.com/hpcc-charms/layer-hpccsystems-platform-base.git
-includes: ['layer:basic']
+includes:
+  - 'layer:hpccsystems-base'
