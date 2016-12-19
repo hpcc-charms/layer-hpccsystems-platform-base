@@ -22,14 +22,15 @@ from charmhelpers.core.hookenv import INFO
 from charmhelpers.core.hookenv import DEBUG
 
 
-from charms.layer.hpccsystems_platform import HPCCSystemsPlatformConfigs
+from charms.layer.hpccsystems_platform import HPCCSystemsPlatformConfig
 from charms.layer.utils import SSHKey
 
 @hook('install')
+# all these should go to hpccsystems-base lib/
 def install_platform():
-    if is_state('platform.available'):
+    if is_state('platform.installed'):
         return
-    platform = HPCCSystemsPlatformConfigs()
+    platform = HPCCSystemsPlatformConfig()
     platform.install_prerequsites()
     platform.install_platform()
     # ssh keys?
@@ -41,11 +42,14 @@ def install_platform():
 
 @hook('config-changed')
 def config_changed():
+
+    pass #not working correctly
+
     config = hookenv.config()
     if config.changed('ssh-key-private'): 
         install_keys_from_config(config)
 
-    platform = HPCCSystemsPlatformConfigs()
+    platform = HPCCSystemsPlatformConfig()
     if config.changed('hpcc-version') or config.changed('hpcc-type'): 
        hpcc_installed = platform.installed_platform()
        if (config.changed('hpcc-version') != hpcc_installed[0]) or \

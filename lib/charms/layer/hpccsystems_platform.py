@@ -35,7 +35,7 @@ from charmhelpers.fetch.archiveurl import (
    
      
 
-class HPCCSystemsPlatformConfigs:
+class HPCCSystemsPlatformConfig:
     def __init__(self):
         self.config = hookenv.config()
         #log("config.yaml:", INFO)
@@ -81,6 +81,7 @@ class HPCCSystemsPlatformConfigs:
         package_file = self.download_platform()
         dpkg_install_platform_deb = 'dpkg -i %s' % package_file
         check_call(dpkg_install_platform_deb.split(), shell=False)
+        hookenv.status_set('active', 'Platform installed')
 
     def uninstall_platform(self):
         hookenv.status_set('maintenance', 'Uninstalling platform')
