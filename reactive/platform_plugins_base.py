@@ -25,13 +25,13 @@ from charmhelpers.core.hookenv import DEBUG
 from charms.layer.hpccsystems_platform import HPCCSystemsPlatformConfig
 from charms.layer.utils import SSHKey
 
-@when('plugin-config.restart.platform')
-def restart_platform():
+@when('hpcc-plugins.available')
+def restart_platform(plugin):
     if is_state('platform.started'):
        remove_state('platform.started')
     if is_state('platform.start.failed'):
        remove_state('platform.start.failed')
-    remove_state('plugin-config.restart.platform')
+    remove_state('hpcc-plugins.restart.platform')
 
     platform = HPCCSystemsPlatformConfig()
     if platform.restart():
