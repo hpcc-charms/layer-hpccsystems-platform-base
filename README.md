@@ -1,9 +1,13 @@
-Inherite from layer-hpccsystems-base and has interface-hpccsystems-plugin 
-It includes functions to install and configure HPCC Platform, etc
+# Implementation #
+This is abstract charm which provide HPCCSystems Platform installation configuration and management.
+It include HPCCSystems Plugin interface to allow various additional plugins be added. 
+Other concrete charms will inherit this, for example hpccystems-cluster-base and hpccsystems-platform .
+charms will inherit this to provoide deployable 
 
-To to plugin interface is not clean. Evne there are some commmon code in reactive/plugin_base.py
-but the method reply on "hpcc-plugin" service name which is set in metadata.yaml in concrete
-charm
+![alt Hierarchy Diagram] (images/layer-hpccsystems-platform-base.jpg)
+
+
+
 
 
 
